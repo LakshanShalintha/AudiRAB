@@ -1,16 +1,17 @@
 import 'package:flutter/material.dart';
 
-import 'LogInPage.dart';
+import 'SignUpPage.dart';
 import 'MyHomePage.dart';
 
-class SignUpPage extends StatefulWidget {
+class LogInPage extends StatefulWidget {
+  const LogInPage({super.key});
+
   @override
-  _SignUpPageState createState() => _SignUpPageState();
+  _LogInPageState createState() => _LogInPageState();
 }
 
-class _SignUpPageState extends State<SignUpPage> {
+class _LogInPageState extends State<LogInPage> {
   TextEditingController _usernameController = TextEditingController();
-  TextEditingController _emailController = TextEditingController();
   TextEditingController _passwordController = TextEditingController();
 
   get google => google.com;
@@ -56,7 +57,7 @@ class _SignUpPageState extends State<SignUpPage> {
                     Navigator.push(
                       context,
                       MaterialPageRoute(
-                          builder: (context) => LogInPage()),
+                          builder: (context) => SignUpPage()),
                     );
                     break;
                 }
@@ -86,10 +87,10 @@ class _SignUpPageState extends State<SignUpPage> {
               // Navigate to login page
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => LogInPage()),
+                MaterialPageRoute(builder: (context) => SignUpPage()),
               );
             },
-            icon: Icon(Icons.login),
+            icon: Icon(Icons.person_add),
           ),
         ],
       ),
@@ -117,7 +118,7 @@ class _SignUpPageState extends State<SignUpPage> {
                 style: TextStyle(color: Colors.white, fontSize: 30),
               ),
               SizedBox(
-                height: 350,
+                height: 250,
                 child: Container(
                   decoration: BoxDecoration(
                     color: Colors.white,
@@ -141,15 +142,6 @@ class _SignUpPageState extends State<SignUpPage> {
                           ),
                           SizedBox(height: 5.0),
                           TextField(
-                            controller: _emailController,
-                            keyboardType: TextInputType.emailAddress,
-                            decoration: InputDecoration(
-                              labelText: 'Email',
-                              prefixIcon: Icon(Icons.email),
-                            ),
-                          ),
-                          SizedBox(height: 5.0),
-                          TextField(
                             controller: _passwordController,
                             obscureText: true,
                             decoration: InputDecoration(
@@ -157,38 +149,17 @@ class _SignUpPageState extends State<SignUpPage> {
                               prefixIcon: Icon(Icons.password),
                             ),
                           ),
-                          SizedBox(height: 10.0),
-                          TextButton(
-                            onPressed: () {
-                              // Navigate to forgot password page
-                              // Replace ForgotPasswordPage with the desired page
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (context) => MyHomePage(),
-                                ),
-                              );
-                            },
-                            child: Text(
-                              'Forgot Password',
-                              style: TextStyle(
-                                color: Colors.red,
-                              ),
-                            ),
-                          ),
                           SizedBox(height: 10),
                           SizedBox(
-                            width: double.infinity, // Set button width to match parent
-                            height: 50.0, // Adjust button height as needed
+                            height: 40.0, // Adjust button height as needed
                             child: ElevatedButton(
                               onPressed: () {
                                 // Implement sign up functionality here
                                 String username = _usernameController.text;
-                                String email = _emailController.text;
                                 String password = _passwordController.text;
                                 // You can add your sign up logic here
                                 print(
-                                  'Username: $username, Email: $email, Password: $password',
+                                  'Username: $username, Password: $password',
                                 );
 
                                 Navigator.push(
@@ -201,9 +172,9 @@ class _SignUpPageState extends State<SignUpPage> {
                               child: Padding(
                                 padding: EdgeInsets.all(10),
                                 child: Text(
-                                  'Sign Up',
+                                  'Login',
                                   style: TextStyle(
-                                      fontSize: 18.0,
+                                      fontSize: 16.0,
                                       color: Colors.white,
                                       fontWeight: FontWeight.bold),
                                 ),
@@ -219,11 +190,6 @@ class _SignUpPageState extends State<SignUpPage> {
                     ],
                   ),
                 ),
-              ),
-              SizedBox(height: 20.0),
-              Text(
-                '-------OR SignUP-------',
-                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 15, color: Colors.white),
               ),
               SizedBox(height: 20,),
               Row(
@@ -270,10 +236,9 @@ class _SignUpPageState extends State<SignUpPage> {
     );
   }
 
-    @override
+  @override
   void dispose() {
     _usernameController.dispose();
-    _emailController.dispose();
     _passwordController.dispose();
     super.dispose();
   }
